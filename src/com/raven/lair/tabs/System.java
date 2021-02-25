@@ -36,6 +36,7 @@ public class System extends SettingsPreferenceFragment
     private static final String SCROLLINGCACHE_PREF = "pref_scrollingcache";
     private static final String SCROLLINGCACHE_PERSIST_PROP = "persist.sys.scrollingcache";
     private static final String SCROLLINGCACHE_DEFAULT = "2";
+    private static final String SMART_PIXELS = "smart_pixels";
 
     private ListPreference mScrollingCachePref;
 
@@ -43,6 +44,7 @@ public class System extends SettingsPreferenceFragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.system);
+	updateSmartPixelsPreference();
 
 	mScrollingCachePref = (ListPreference) findPreference(SCROLLINGCACHE_PREF);
         mScrollingCachePref.setValue(SystemProperties.get(SCROLLINGCACHE_PERSIST_PROP,
@@ -59,6 +61,18 @@ public class System extends SettingsPreferenceFragment
     public void onPause() {
         super.onPause();
     }
+
+    private void updateSmartPixelsPreference() {
+        PreferenceScreen prefSet = getPreferenceScreen();
+        boolean enableSmartPixels = getContext().getResources().
+                getBoolean(com.android.internal.R.bool.config_enableSmartPixels);
+        Preference smartPixels = findPreference(SMART_PIXELS);
+
+        if (!enableSmartPixels){
+            prefSet.removePreference(smartPixels);
+        }
+    }
+
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         final String key = preference.getKey();

@@ -60,5 +60,11 @@
         android:title="@string/pref_scrollingcache_title"
         android:summary="@string/pref_scrollingcache_summary"
         android:entries="@array/entries_scrollingcache"
-        android:entryValues="@array/values_scrollingcache" />	
+        android:entryValues="@array/values_scrollingcache" />
+
+    <Preference
+        android:key="smart_pixels"
+        android:fragment="com.raven.lair.fragments.SmartPixels"
+        android:title="@string/smart_pixels_title"
+        android:summary="@string/smart_pixels_summary" />
 </PreferenceScreen>
