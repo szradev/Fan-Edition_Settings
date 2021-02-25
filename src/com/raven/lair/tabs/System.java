@@ -22,6 +22,9 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.PreferenceFragment;
+import androidx.preference.ListPreference;
+import com.android.settings.custom.preference.SecureSettingListPreference;
+import android.os.SystemProperties;
 
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.R;
@@ -30,11 +33,21 @@ import com.android.settings.SettingsPreferenceFragment;
 public class System extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
+    private static final String SCROLLINGCACHE_PREF = "pref_scrollingcache";
+    private static final String SCROLLINGCACHE_PERSIST_PROP = "persist.sys.scrollingcache";
+    private static final String SCROLLINGCACHE_DEFAULT = "2";
+
+    private ListPreference mScrollingCachePref;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.system);
 
+	mScrollingCachePref = (ListPreference) findPreference(SCROLLINGCACHE_PREF);
+        mScrollingCachePref.setValue(SystemProperties.get(SCROLLINGCACHE_PERSIST_PROP,
+        SystemProperties.get(SCROLLINGCACHE_PERSIST_PROP, SCROLLINGCACHE_DEFAULT)));
+        mScrollingCachePref.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -49,7 +62,14 @@ public class System extends SettingsPreferenceFragment
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         final String key = preference.getKey();
-        return false;
+
+	if (preference == mScrollingCachePref) {
+            if (objValue != null) {
+                SystemProperties.set(SCROLLINGCACHE_PERSIST_PROP, (String) objValue);
+            }
+            return true;
+	}
+	return false;
     }
 
     @Override
