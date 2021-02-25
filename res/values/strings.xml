@@ -290,4 +290,8 @@
     <string name="smart_pixels_on_power_save_summary">Enable with battery saver to increase power savings</string>
     <string name="smart_pixels_percent">Percent of pixels to disable</string>
     <string name="smart_pixels_shift">Burn-in protection interval</string>
+
+    <!-- Notification guts kill app button -->
+    <string name="notification_guts_kill_app_button_title">Kill app button</string>
+    <string name="notification_guts_kill_app_button_summary">Show a kill app button in the notification\'s longpress menu</string>
 </resources>
