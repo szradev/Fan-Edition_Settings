@@ -67,4 +67,11 @@
         android:fragment="com.raven.lair.fragments.SmartPixels"
         android:title="@string/smart_pixels_title"
         android:summary="@string/smart_pixels_summary" />
+    
+    <!-- Sensor Block -->
+    <Preference
+        android:key="sensor_block_settings"
+        android:title="@string/sensor_block_title"
+        android:summary="@string/sensor_block_summary"
+        android:fragment="com.raven.lair.fragments.SensorBlockSettings"/>
 </PreferenceScreen>
