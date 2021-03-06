@@ -15,8 +15,8 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Dirty Tweaks -->
-    <string name="ravenlair_title">Pixel\'s Den</string>
-    <string name="ravenlair_summary">Your Dessert Here</string>
+    <string name="ravenlair_title">Strefa boga</string>
+    <string name="ravenlair_summary">Poczuj się jak bóg</string>
     <!-- The Team -->
     <string name="dialog_team_title">The team</string>
     <string name="leaddeveloper_title">Lead Developer</string>
